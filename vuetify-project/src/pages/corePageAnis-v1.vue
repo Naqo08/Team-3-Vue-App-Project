@@ -308,93 +308,169 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
+
+    <!-- Gallery Section -->
+  <v-container fluid class="bg-grey-lighten-5 px-0 py-0">
+    <v-container class="pt-0 pyb-12 pb-md-16">
+      <v-row justify="center">
+        <v-col cols="12" lg="10" xl="8">
+          <div class="text-center mb-8 mb-md-12">
+            <h2 class="text-h3 font-weight-light text-grey-darken-3 mb-4">
+              Design Gallery
+            </h2>
+            <p
+              class="text-h6 font-weight-regular text-grey-darken-1 mx-auto"
+              style="max-width: 600px"
+            >
+              Explore AI-generated interior designs tailored to your style
+              preferences
+            </p>
+          </div>
+
+          <v-card elevation="0" rounded="xl" class="overflow-hidden">
+            <v-carousel
+              show-arrows="hover"
+              hide-delimiter-background
+              hide-delimiters
+              height="400"
+              class="gallery-carousel"
+            >
+              <v-carousel-item
+                v-for="(item, i) in galleryItems"
+                :key="i"
+                :src="item.src"
+                cover
+              >
+                <div class="carousel-overlay d-flex align-end">
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12">
+                        <div class="text-white">
+                          <h3 class="text-h4 font-weight-light mb-2">
+                            {{ item.title }}
+                          </h3>
+                          <p class="text-body-1 opacity-90">
+                            {{ item.description }}
+                          </p>
+                        </div>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </div>
+              </v-carousel-item>
+            </v-carousel>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-container>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+  import { ref } from 'vue'
 
-const selectedStyles = ref([]);
+  const selectedStyles = ref([]);
 
-// Image handling
-const imagePreview = ref<string | null>(null)
-const fileInput = ref<HTMLInputElement | null>(null)
-const isDragging = ref(false)
+  // Image handling
+  const imagePreview = ref<string | null>(null)
+  const fileInput = ref<HTMLInputElement | null>(null)
+  const isDragging = ref(false)
 
-// Room configuration
-const roomType = ref<string>('')
-const designStyle = ref<string>('')
+  // Room configuration
+  const roomType = ref<string>('')
+  const designStyle = ref<string>('')
 
-// Options for selections
-const roomTypes = ['Living Room', 'Bedroom', 'Kitchen', 'Bathroom']
-// const designStyles = ['Modern', 'Scandinavian', 'Traditional', 'Minimalist', 'Retro']
+  // Options for selections
+  const roomTypes = ['Living Room', 'Bedroom', 'Kitchen', 'Bathroom']
+  // const designStyles = ['Modern', 'Scandinavian', 'Traditional', 'Minimalist', 'Retro']
 
-// Methods
-const triggerUpload = () => {
-  fileInput.value?.click()
-}
-
-const handleFileUpload = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  if (target.files && target.files[0]) {
-    const file = target.files[0]
-    imagePreview.value = URL.createObjectURL(file)
+  // Methods
+  const triggerUpload = () => {
+    fileInput.value?.click()
   }
-}
 
-const handleDrop = (event: DragEvent) => {
-  isDragging.value = false
-  const files = event.dataTransfer?.files
-  if (files && files[0]) {
-    const file = files[0]
-    if (file.type.startsWith('image/')) {
+  const handleFileUpload = (event: Event) => {
+    const target = event.target as HTMLInputElement
+    if (target.files && target.files[0]) {
+      const file = target.files[0]
       imagePreview.value = URL.createObjectURL(file)
     }
   }
-}
 
-const takePhoto = () => {
-  // Implement camera functionality here
-  console.log('Take photo clicked')
-}
+  const handleDrop = (event: DragEvent) => {
+    isDragging.value = false
+    const files = event.dataTransfer?.files
+    if (files && files[0]) {
+      const file = files[0]
+      if (file.type.startsWith('image/')) {
+        imagePreview.value = URL.createObjectURL(file)
+      }
+    }
+  }
 
-const designStyles = [
-  "Modern",
-  "Minimalist",
-  "Scandinavian",
-  "Industrial",
-  "Bohemian",
-  "Traditional",
-  "Contemporary",
-  "Mid-Century",
-  "Rustic",
-  "Art Deco",
+  const takePhoto = () => {
+    // Implement camera functionality here
+    console.log('Take photo clicked')
+  }
+
+  const designStyles = [
+    "Modern",
+    "Minimalist",
+    "Scandinavian",
+    "Industrial",
+    "Bohemian",
+    "Traditional",
+    "Contemporary",
+    "Mid-Century",
+    "Rustic",
+    "Art Deco",
+  ];
+
+  const generateDesign = () => {
+    // Implement generation logic here
+    console.log('Generating design with:', {
+      roomType: roomType.value,
+      designStyle: designStyle.value
+    })
+    dialog.value = true
+  }
+  const dialog = ref(false)
+
+  // Define hotspots with their positions and URLs
+  const hotspots = [
+    { x: 18, y: 25, url: 'https://www.ikea.com/my/en/p/idanaes-high-cabinet-w-gls-drs-and-1-drawer-dark-brown-stained-50487838/', tooltip: 'Cabinet'  },
+    { x: 73, y: 35, url: 'https://www.ikea.com/my/en/p/forsa-work-lamp-nickel-plated-10146766/', tooltip: 'Work Lamp' },
+    { x: 40, y: 70, url: 'https://www.ikea.com/my/en/p/idanaes-coffee-table-dark-brown-stained-90500003/', tooltip: 'Coffee Table' },
+    { x: 45, y: 15, url: 'https://www.ikea.com/my/en/p/ringblomma-roman-blind-beige-40583538/', tooltip: 'Blind'},
+    { x: 38, y: 40, url: 'https://www.ikea.com/my/en/p/roedflik-floor-reading-lamp-grey-green-80563576/', tooltip: 'Lamp'},
+    { x: 25, y: 25, url: 'https://www.ikea.com/my/en/p/idanaes-bookcase-dark-brown-stained-80487832/', tooltip: 'Bookcase'},
+    { x: 55, y: 30, url: 'https://www.ikea.com/my/en/p/dytag-curtains-1-pair-dark-beige-with-heading-tape-40519118/', tooltip: 'Curtain'}
+  ]
+
+  // Function to open links
+  const openLink = (url: string) => {
+    window.open(url, '_blank')
+  }
+
+  // Carousel Gallery
+  const galleryItems = [
+  {
+    src: "https://homefirstindia.com/app/uploads/2020/12/Living-Room.jpg",
+    title: "Modern Living Room",
+    description: "Clean lines and contemporary furniture",
+  },
+  {
+    src: "https://d28pk2nlhhgcne.cloudfront.net/assets/app/uploads/sites/3/2021/11/living-room-decoration-720x533.jpg",
+    title: "Scandinavian Bedroom",
+    description: "Minimalist design with natural elements",
+  },
+  {
+    src: "https://www.kunstloft.com/magazine/wp-content/uploads/2024/01/home-decoration-with-a-small-budget-2000x1128.web",
+    title: "Industrial Kitchen",
+    description: "Raw materials and urban aesthetics",
+  },
 ];
 
-const generateDesign = () => {
-  // Implement generation logic here
-  console.log('Generating design with:', {
-    roomType: roomType.value,
-    designStyle: designStyle.value
-  })
-  dialog.value = true
-}
-const dialog = ref(false)
-
-// Define hotspots with their positions and URLs
-const hotspots = [
-  { x: 18, y: 25, url: 'https://www.ikea.com/my/en/p/idanaes-high-cabinet-w-gls-drs-and-1-drawer-dark-brown-stained-50487838/', tooltip: 'Cabinet'  },
-  { x: 73, y: 35, url: 'https://www.ikea.com/my/en/p/forsa-work-lamp-nickel-plated-10146766/', tooltip: 'Work Lamp' },
-  { x: 40, y: 70, url: 'https://www.ikea.com/my/en/p/idanaes-coffee-table-dark-brown-stained-90500003/', tooltip: 'Coffee Table' },
-  { x: 45, y: 15, url: 'https://www.ikea.com/my/en/p/ringblomma-roman-blind-beige-40583538/', tooltip: 'Blind'},
-  { x: 38, y: 40, url: 'https://www.ikea.com/my/en/p/roedflik-floor-reading-lamp-grey-green-80563576/', tooltip: 'Lamp'},
-  { x: 25, y: 25, url: 'https://www.ikea.com/my/en/p/idanaes-bookcase-dark-brown-stained-80487832/', tooltip: 'Bookcase'},
-  { x: 55, y: 30, url: 'https://www.ikea.com/my/en/p/dytag-curtains-1-pair-dark-beige-with-heading-tape-40519118/', tooltip: 'Curtain'}
-]
-
-// Function to open links
-const openLink = (url: string) => {
-  window.open(url, '_blank')
-}
 </script>
 
 <style scoped>
@@ -454,5 +530,22 @@ const openLink = (url: string) => {
   background: rgba(255, 255, 255, 0.4) !important;
 }
 
+.gallery-carousel .v-carousel__controls {
+  background: transparent !important;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    transparent 100%
+  );
+}
 
 </style>
