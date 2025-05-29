@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-footer
     app
     height="40"
@@ -79,4 +79,214 @@
 
     &:hover
       color: rgba(25, 118, 210, 1)
+</style> -->
+
+<template>
+  <footer class="wave-footer">
+    <!-- Container for the waves -->
+    <div class="waves-container">
+      <!-- Multiple wave layers with different speeds and opacities -->
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+      <div class="wave wave-3"></div>
+      <div class="wave wave-4"></div>
+    </div>
+    
+    <!-- Footer content -->
+    <!-- <div class="footer-content">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h3>About Us</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris.</p>
+          </div>
+          <div class="col">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Portfolio</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Contact Us</h3>
+            <p>Email: info@example.com</p>
+            <p>Phone: (123) 456-7890</p>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; {{ new Date().getFullYear() }} Your Company. All rights reserved.</p>
+        </div>
+      </div>
+    </div> -->
+  </footer>
+</template>
+
+<script>
+export default {
+  name: 'WaveFooter'
+}
+</script>
+
+<style scoped>
+.wave-footer {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(to bottom, #ecb086, #d08e62);
+  color: white;
+  overflow: hidden;
+  padding-top: 150px; /* Space for the waves */
+}
+
+/* Waves container */
+.waves-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+/* Base wave style */
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+
+/* Wave 1 - Darkest and slowest */
+.wave-1 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%23603913' d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3C/svg%3E");
+  animation: wave-animation 25s linear infinite;
+  z-index: 4;
+  opacity: 0.8;
+}
+
+/* Wave 2 - Medium dark and medium speed */
+.wave-2 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%238B4513' d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3C/svg%3E");
+  animation: wave-animation 20s linear infinite;
+  z-index: 3;
+  opacity: 0.6;
+}
+
+/* Wave 3 - Light brown and faster */
+.wave-3 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%23A0522D' d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3C/svg%3E");
+  animation: wave-animation 15s linear infinite;
+  z-index: 2;
+  opacity: 0.4;
+}
+
+/* Wave 4 - Lightest and fastest */
+.wave-4 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%23CD853F' d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25'%3E%3C/path%3E%3C/svg%3E");
+  animation: wave-animation 10s linear infinite;
+  z-index: 1;
+  opacity: 0.2;
+}
+
+/* Wave animation */
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Footer content styling */
+.footer-content {
+  position: relative;
+  z-index: 5;
+  padding: 50px 0 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col {
+  flex: 1;
+  padding: 0 15px;
+  min-width: 250px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  color: #F5DEB3;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #F5DEB3;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #fde7c1;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+  
+  .col {
+    flex: 100%;
+  }
+  
+  .wave-footer {
+    padding-top: 100px;
+  }
+  
+  .waves-container {
+    height: 100px;
+  }
+}
 </style>
+
+
+
+
