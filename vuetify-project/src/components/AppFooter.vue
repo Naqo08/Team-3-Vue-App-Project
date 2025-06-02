@@ -91,7 +91,6 @@
       <div class="wave wave-3"></div>
       <div class="wave wave-4"></div>
     </div>
-    
     <!-- Footer content -->
     <!-- <div class="footer-content">
       <div class="container">
@@ -123,17 +122,17 @@
   </footer>
 </template>
 
-<script>
-export default {
-  name: 'WaveFooter'
-}
+<script lang="ts">
+  export default {
+    name: 'WaveFooter',
+  }
 </script>
 
 <style scoped>
 .wave-footer {
   position: relative;
   width: 100%;
-  background: linear-gradient(to bottom, #ecb086, #d08e62);
+  background: linear-gradient(to bottom, #4A2511, #d08e62);
   color: white;
   overflow: hidden;
   padding-top: 150px; /* Space for the waves */
@@ -272,21 +271,14 @@ a:hover {
   .row {
     flex-direction: column;
   }
-  
   .col {
     flex: 100%;
   }
-  
   .wave-footer {
     padding-top: 100px;
   }
-  
   .waves-container {
     height: 100px;
   }
 }
 </style>
-
-
-
-

@@ -37,7 +37,7 @@
             >
               <v-card-text class="pa-8 pa-md-10">
                 <div
-                  class="text-h5 font-weight-medium mb-8 text-grey-darken-2"
+                  class="text-h5 font-weight-medium mb-8 text-brown-darken-2"
                 >
                   Upload existing room
                 </div>
@@ -59,8 +59,7 @@
                 </v-divider>
 
                 <v-btn
-                  variant="outlined"
-                  color="brown-darken-1"
+                  color="#4A2511"
                   size="large"
                   rounded="lg"
                   prepend-icon="mdi-camera-outline"
@@ -86,7 +85,7 @@
                 <!-- Room Type -->
                 <div class="mb-8">
                   <div
-                    class="text-h6 font-weight-medium mb-4 text-grey-darken-2"
+                    class="text-h6 font-weight-medium mb-4 text-brown-darken-2"
                   >
                     Room Type
                   </div>
@@ -103,7 +102,7 @@
                 <!-- Design Styles -->
                 <div>
                   <div
-                    class="text-h6 font-weight-medium mb-4 text-grey-darken-2"
+                    class="text-h6 font-weight-medium mb-4 text-brown-darken-2"
                   >
                     Design Styles
                   </div>
@@ -132,7 +131,7 @@
 
                 <!-- Generate Button -->
                 <v-btn
-                  color="brown-darken-1"
+                  color="#4A2511"
                   size="large"
                   rounded="lg"
                   class="mt-8 text-none font-weight-medium"

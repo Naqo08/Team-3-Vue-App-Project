@@ -1,81 +1,102 @@
 <template>
-    <v-container style="position: fixed; z-index: 1000; top: 16px; left: 0px; right: 0px;">
-        <v-toolbar elevation="4" style="border-radius: 33px;">
+  <v-container style="position: fixed; z-index: 1000; top: 16px; left: 0px; right: 0px;">
+    <v-toolbar color="#4A2511" elevation="4" height="50" style="border-radius: 33px;">
 
-            <!-- Logo + App Name  -->
-            <template v-slot:prepend>
-                <!-- <v-btn prepend-icon="mdi-sofa" to="landing" variant="plain" color="black" :ripple="false">
-                    <img src="@/assets/kAIyu.png" alt="Logo" height="30" class="mr-2">
-                    k-AI-yu
-                </v-btn> -->
-                <v-btn to="landing" variant="plain" color="black" :ripple="false">
-                  <img src="@/assets/chair-icon.png" alt="chair-icon" class="custom-icon mr-2">
-                  k-AI-yu
-                </v-btn>
-            </template>
+      <!-- Logo + App Name  -->
+      <template v-slot:prepend>
+        <v-btn color="white" :ripple="false" to="landing" variant="plain">
+          <!-- <img alt="chair-icon" class="custom-icon mr-2" src="@/assets/chair-icon.png"> -->
+          <img alt="chair-icon" class="custom-icon mr-2" src="https://raw.githubusercontent.com/Naqo08/Team-3-Vue-App-Project/din-branch/images-logo/chair-icon.png">
+          k-AI-yu
+        </v-btn>
+      </template>
 
-            <!-- Center Tabs -->
-                <!-- <v-btn prepend-icon="mdi-home" variant="plain" to="/generate" :ripple="false" class="ml-2">
-                    Home
-                </v-btn> -->
-                <v-btn prepend-icon="mdi-creation" variant="plain" to="/generate" :ripple="false" class="ml-4">
-                    Generate
-                </v-btn>
-                <v-btn prepend-icon="mdi-information" variant="plain" to="/about" :ripple="false" class="ml-4">
-                    About
-                </v-btn>
-                <v-btn prepend-icon="mdi-view-gallery" variant="plain" to="/gallery" :ripple="false" class="ml-4">
-                    Gallery
-                </v-btn>
+      <!-- Center Tabs -->
+      <v-btn
+        class="ml-4"
+        prepend-icon="mdi-creation"
+        :ripple="false"
+        to="/generate"
+        variant="plain"
+      >
+        Generate
+      </v-btn>
+      <v-btn
+        class="ml-4"
+        prepend-icon="mdi-information"
+        :ripple="false"
+        to="/about"
+        variant="plain"
+      >
+        About
+      </v-btn>
+      <v-btn
+        class="ml-4"
+        prepend-icon="mdi-view-gallery"
+        :ripple="false"
+        to="/gallery"
+        variant="plain"
+      >
+        Gallery
+      </v-btn>
 
-            <!-- Right Section: Sign Up + Avatar -->
-            <template v-slot:append>
-                <v-btn variant="text" color="black" size="auto" density="compact"
-                    style="margin-left: 12px;" :ripple="false" @click="dialog = !dialog">sign-up</v-btn>
+      <!-- Right Section: Sign Up + Avatar -->
+      <template v-slot:append>
+        <v-btn
+          color="white"
+          density="compact"
+          :ripple="false"
+          size="auto"
+          style="margin-left: 12px;"
+          variant="plain"
+          @click="dialog = !dialog"
+        >
+          sign-up
+        </v-btn>
 
-            <!-- Avatar dropdown -->
-            <v-menu offset-y>
-              <template #activator="{ props }">
-                <v-btn icon v-bind="props" class="ml-2" color="black">
-                  <v-icon>mdi-account</v-icon>
-                </v-btn>
-              </template>
-              <v-list>
-                <v-list-item @click="openSettings">
-                  <v-list-item-title>
-                    <v-btn prepend-icon="mdi-cog">Settings</v-btn>
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="logout">
-                  <v-list-item-title>
-                    <v-btn prepend-icon="mdi-logout">Logout</v-btn>
-                  </v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="toggleTheme">
-                  <v-list-item-title>
-                    <v-btn prepend-icon="mdi-theme-light-dark">Toggle Theme</v-btn>
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            </template>
-        </v-toolbar>
-    </v-container>
+        <!-- Avatar dropdown -->
+        <v-menu offset-y>
+          <template #activator="{ props }">
+            <v-btn
+              class="ml-2"
+              color="white"
+              icon
+              v-bind="props"
+              variant="plain"
+            >
+              <v-icon>mdi-account</v-icon>
+            </v-btn>
+          </template>
+          <v-list class="dropdown-list">
+            <v-list-item>
+              <v-btn block class="dropdown-btn" prepend-icon="mdi-cog" @click="openSettings">Settings</v-btn>
+            </v-list-item>
+            <v-list-item>
+              <v-btn block class="dropdown-btn" prepend-icon="mdi-logout" @click="logout">Logout</v-btn>
+            </v-list-item>
+            <v-list-item>
+              <v-btn block class="dropdown-btn" prepend-icon="mdi-theme-light-dark" @click="toggleTheme">Toggle Theme</v-btn>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </template>
+    </v-toolbar>
+</v-container>
 </template>
 
-<script setup>
-import { useTheme } from 'vuetify';
-import { ref } from 'vue';
- 
-const theme = useTheme();
-const dialog = ref(false);
+<script setup lang="ts">
+  import { useTheme } from 'vuetify';
+  import { ref } from 'vue';
 
-theme.global.name.value = 'light';
+  const theme = useTheme();
+  const dialog = ref(false);
 
-function toggleTheme() {
-   // theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
-   theme.global.name.value = 'light';
-}
+  theme.global.name.value = 'light';
+
+  function toggleTheme () {
+    // theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+    theme.global.name.value = 'light';
+  }
 </script>
 
 <style scoped>
@@ -92,5 +113,26 @@ function toggleTheme() {
 .v-btn:hover .custom-icon {
   filter: grayscale(0%);
   transform: scale(1.1);
+}
+
+.dropdown-list {
+  min-width: 200px;
+  padding: 4px;
+}
+
+.dropdown-btn {
+  justify-content: flex-start;
+  padding-left: 16px;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.dropdown-btn ::v-deep .v-btn__prepend {
+  margin-right: 12px;
+  margin-left: 0;
+}
+
+.dropdown-btn:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 </style>
